@@ -1,26 +1,20 @@
 module alu(
-    input rs1,
-    input rs2,
-    input imm12,
-    output rd
+    input clk,
+    input logic [31:0] rs1,
+    input logic [31:0] rs2,
+    input logic [31:0] imm12,
+    input [31:0] state,
+    output logic [31:0] rd
 );
 
-always @(posedge clk) begin
-    
+parameter ADDI = 1, SUBI = 2;
+
+always @(*) begin
+    rd = 32'b0;
+
     case (state)
-
-        ADD: rd <= rs1 + rs2;
-        ADDI: rd <= rs1 + 
-
-        SUB: r3 <= r1 - r2;
-
-        LW: rd <= imm12;
-
-        SW: rs1 <= imm12;
-
-        BEQ:
-
-
+        ADDI: rd = rs1 + imm12;
+        SUBI: rd = rs1 - imm12;
     endcase
 
 end
